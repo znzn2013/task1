@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Linq;
+
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        public int solution(int[] A)
+        {
+            int marker = 0;
+            int counter=0;
+            int[] rep;
+            rep = new int[A.Length];
+            loop:for (int i = 0; i < A.Length; i++)
+            {
+                if (A[marker] == A[i])
+                { counter += 1; }
+            }
+            rep[marker] = counter;
+            counter = 0;
+            marker += 1;
+            if (marker<A.Length)
+            {goto loop;}
+            int maxvalue = rep.Max();
+            int index = rep.ToList().IndexOf(maxvalue);
+            double l=(A.Length) / 2 ;
+            var lasthingXD = Math.Ceiling(l);
+            if (lasthingXD< maxvalue)
+                return A[index];
+            else
+                return -1;
+
+        }
+        static void Main(string[] args)
+        {
+           hello: int x = Convert.ToInt32(Console.ReadLine());
+            if (x<0||x>100000)
+            { Console.WriteLine("the range must be with in 0 and 100,000");
+            goto hello;
+            }
+            int []y;
+            y = new int[x];
+            for (int i = 0; i < y.Length; i++)
+            {
+                y[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Array.Sort(y);
+            for (int i = 0; i < y.Length; i++)
+            { Console.WriteLine(y[i]); }
+            Program m = new Program();
+            int ret;
+            ret=m.solution(y);
+            Console.WriteLine(ret);
+            Console.ReadKey();
+        }
+    }
+}
